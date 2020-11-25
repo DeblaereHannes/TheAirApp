@@ -81,7 +81,7 @@ const showResult = queryResponse => {
 
 const getAPI1 = async () => {
 	// Eerst bouwen we onze url op
-	const data = await fetch(`http://api.airvisual.com/v2/nearest_city?key=${_KEY}`)
+	const data = await fetch(`https://api.airvisual.com/v2/nearest_city?key=${_KEY}`)
 		.then((r) => r.json())
 		.catch((err) => console.error('an error has happend', err));
 	showResult(data);
@@ -91,7 +91,7 @@ const getAPI1 = async () => {
 
 const getAPI2 = async (lat, lng) => {
 	// Eerst bouwen we onze url op
-	const data = await fetch(`http://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${lng}&key=${_KEY}`)
+	const data = await fetch(`https://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${lng}&key=${_KEY}`)
 		.then((r) => r.json())
 		.catch((err) => console.error('an error has happend', err));
 	showResult(data);
