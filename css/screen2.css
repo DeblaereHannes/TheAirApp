@@ -596,6 +596,7 @@ input::placeholder {
     font-size: 32px;
     line-height: var(--global-whitespace);
     font-weight: 600;
+    margin-bottom: var(--global-whitespace-sm);
 }
 
 .c-card__titlespace{
@@ -634,10 +635,6 @@ input::placeholder {
 @media (min-width: 768px) {
     .c-card__body {
         padding: 0px var(--global-whitespace-xl) 0px;
-    }
-
-    .c-card__title {
-        margin-bottom: var(--global-whitespace-sm);
     }
 
     .c-card__body--content-weather{
