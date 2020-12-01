@@ -77,6 +77,12 @@
 
     --global-color-error: crimson;
     --input-borderColor-error: red;
+
+    --accent: black;
+    --border-width: 6px;
+    --border-radius: 55px;
+    --font-size: 30px;
+
 }
 
 /*------------------------------------*\
@@ -613,6 +619,15 @@ input::placeholder {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+.c-card__body--content-toggle{
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
 .c-card__body--content-weather{
     grid-column: 1/-1;
 }
@@ -685,56 +700,74 @@ img{
 
 */
 
-.toggle-containter{
-    width: 90%;
+
+
+.toggle-container{
+    perspective: 800px;
+}
+
+.toggle {
+    position: relative;
+    border: solid var(--border-width) var(--accent);
+    border-radius: var(--border-radius);
+    transition: transform cubic-bezier(0, 0, 0.30, 2) .4s;
+    transform-style: preserve-3d;
+    perspective: 800px;
+}
+
+.toggle>input[type="radio"] {
+    display: none;
+}
+
+.toggle>#choice1:checked~#flap {
+    transform: rotateY(-180deg);
+}
+
+.toggle>#choice1:checked~#flap>.content {
+    transform: rotateY(-180deg);
+}
+
+.toggle>#choice2:checked~#flap {
+    transform: rotateY(0deg);
+}
+
+.toggle>label {
+    display: inline-block;
+    min-width: 100px;
+    font-size: var(--font-size);
+    text-align: center;
+    color: var(--accent);
+    cursor: pointer;
+}
+
+.toggle>label,
+.toggle>#flap {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.toggle>#flap {
+    position: absolute;
+    top: calc( 0px - var(--border-width));
+    left: 50%;
+    height: calc(100% + var(--border-width) * 2);
+    width: 50%;
     display: flex;
-    margin: auto;
     justify-content: center;
     align-items: center;
+    font-size: var(--font-size);
+    background-color: var(--accent);
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    transform-style: preserve-3d;
+    transform-origin: left;
+    transition: transform cubic-bezier(0.4, 0, 0.2, 1) .5s;
 }
 
-.switch{
-    position: relative;
-    display: inline-block;
-    width: 55px;
-    height: 30px;
-    margin: 0 10px;
-}
-
-.toggle-text{
-    margin-left: 1rem;
-    margin-right: 1rem;
-}
-
-.slider{
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--global-html-backgroundColor);
-    transition: .4s;
-    border-radius: 34px;
-}
-
-.switch input{display: none;}
-
-.slider::before{
-    position: absolute;
-    content: "";
-    height: 25px;
-    width: 25px;
-    left: 2.5px;
-    bottom: 2.5px;
-    background-color: black;
-    transition: .4s;
-    border-radius: 25px;
-}
-
-
-input:checked + .slider::before{
-    transform: translateX(25px);
+.toggle>#flap>.content {
+    color: var(--global-html-backgroundColor);
+    transition: transform 0s linear .25s;
+    transform-style: preserve-3d;
 }
 
 /*

@@ -582,13 +582,75 @@ input::placeholder {
 }
 
 /*
-    Component: img
+    Component: input
     ---
-    img 
+    email 
 */
 
-.img{
+.c-input {
+    display: block;
 }
+
+.c-input--up{
+    --input-border-size: 1px;
+    --input-line-height: calc(var(--global-baseline) * 3);
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    border-radius: var(--global-borderRadius);
+    border: var(--input-border-size) solid;
+    font-family: inherit;
+    color: inherit;
+    font-size: 16px;
+    line-height: var(--input-line-height);
+    padding: calc((48px - var(--input-line-height) - var(--input-border-size) * 2) /2);
+}
+
+.c-label {
+    display: block;
+    font-size: 14px;
+    line-height: calc(var(--global-baseline) * 2);
+    margin-bottom: var(--global-whitespace-sm);
+    color: var(--global-color-neutral-xx-dark);
+}
+
+.has-error {
+    color: var(--global-color-error);
+    border: var(--input-borderColor-error);
+  }
+
+.c-button {
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: var(--global-borderRadius);
+    border: var(--global-borderWidth) solid var(--global-color-neutral-xxx-dark);
+    background-color: black;
+    color: white;
+    padding: calc(var(--global-baseline) * 1.5 - var(--global-borderWidth)) var(--global-whitespace-md);
+    line-height: calc(var(--global-baseline) * 3);
+    width: 100%;
+    outline: none;
+    transition: all var(--global-transition-timing-alpha);
+}
+
+.c-button:hover {
+    background-color: var(--global-html-backgroundColor);
+    color: black;
+}
+
+.c-button:focus {
+    box-shadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
+}
+
+.c-button:active {
+    background-color: black;
+    color: white;
+    box-shadow: none;
+}
+
+
 
 /*------------------------------------*\
 #UTILITIES

@@ -17,7 +17,7 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/screen1.css">
-        <!-- <script src="script/validation.js"></script>   -->
+        <script src="script/validation.js"></script>  
     </head>
     <body>
         <section class="o-row o-row--lg o-row--login">
@@ -42,6 +42,16 @@
                                     Or you can choose a location on the map.
                                     The color changes depending on the air quality of the given location.
                                 </p>
+                                <form action="#">
+                                    <p class="js-email-field">
+                                        <label for="username" class="c-label">
+                                            enter your email address to stay up-to-date
+                                            <span class="js-email-error-message"></span> 
+                                        </label>
+                                        <input class="c-input c-input--up js-email-input" type="email" name="username" id="username" placeholder="e.g. johnny@gmail.com" required>
+                                    </p>
+                                    <button class="o-button-reset c-button js-sign-in-button">Keep me notified</button>
+                                </form>
                             </div>
                         </div>
                     </div>

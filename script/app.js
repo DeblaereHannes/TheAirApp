@@ -5,7 +5,8 @@ const copyright =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>';
 let map, layergroup;
 const cssRoot = document.querySelector(':root');
-
+let st = {};
+let tempresult;
 
 
 var swapArrayElements = function(arr, indexA, indexB) {
@@ -38,8 +39,8 @@ const showResult = queryResponse => {
   document.querySelector('.js-pressure').innerText = `${queryResponse.data.current.weather.pr} hPa`;
   document.querySelector('.js-hum').innerText = `${queryResponse.data.current.weather.hu} %`;
   document.querySelector('.js-weather-img').src = `./img/${queryResponse.data.current.weather.ic}.png`;
-
-  if(document.querySelector('.js-switch').checked == true){
+  tempresult = queryResponse.data.current.weather.tp;
+  if(st.choice1.checked == true){
     document.querySelector('.js-temp').innerText = `${(queryResponse.data.current.weather.tp) * 1.8000 + 32.00} °F`;
   }else{
     document.querySelector('.js-temp').innerText = `${queryResponse.data.current.weather.tp} °C`;
@@ -68,13 +69,13 @@ const showResult = queryResponse => {
   map.setView(arr, 11);
   maakMarker(arr, queryResponse.data.city, queryResponse.data.country, queryResponse.data.state);
 
-  document.querySelector('.js-switch').addEventListener("click", function(){
-    if(document.querySelector('.js-switch').checked == true){
-      document.querySelector('.js-temp').innerText = `${(queryResponse.data.current.weather.tp) * 1.8000 + 32.00} °F`;
-    }else{
-      document.querySelector('.js-temp').innerText = `${queryResponse.data.current.weather.tp} °C`;
-    }
-  })
+  //document.querySelector('.js-switch').addEventListener("click", function(){
+    //if(document.querySelector('.js-switch').checked == true){
+      //document.querySelector('.js-temp').innerText = `${(queryResponse.data.current.weather.tp) * 1.8000 + 32.00} °F`;
+   // }else{
+     // document.querySelector('.js-temp').innerText = `${queryResponse.data.current.weather.tp} °C`;
+   // }
+  //})
 };
 
 
@@ -99,18 +100,44 @@ const getAPI2 = async (lat, lng) => {
 	// Als dat gelukt is, gaan we naar onze showResult functie.
 };
 
+st.clickHandler = (e) => {
+  
+  if (e.target.tagName === 'LABEL') {
+      setTimeout(() => {
+          st.flap.children[0].textContent = e.target.textContent;
+      }, 250);
+  }
+  //console.log(st.choice1);
+  if(st.choice1.checked == true){
+    document.querySelector('.js-temp').innerText = `${(tempresult) * 1.8000 + 32.00} °F`;
+  }else{
+    document.querySelector('.js-temp').innerText = `${tempresult} °C`;
+  }
+}
+
 const init = function() {
     console.log("init initiated!");
+
+    st.flap = document.querySelector('#flap');
+    st.toggle = document.querySelector('.toggle');
+
+    st.choice1 = document.querySelector('#choice1');
+    st.choice2 = document.querySelector('#choice2');
   
+    st.flap.children[0].textContent = st.choice2.nextElementSibling.textContent;
+    document.addEventListener('click', (e) => st.clickHandler(e));
+
     map = L.map("mapid").setView([51.041028, 3.398512], 10);
     L.tileLayer(provider, {attribution: copyright}).addTo(map);
     layergroup = L.layerGroup().addTo(map);
 
     getAPI1();
 
+
     map.on('click', onMapClick);
     
   };
   
   document.addEventListener("DOMContentLoaded", init);
+
   
