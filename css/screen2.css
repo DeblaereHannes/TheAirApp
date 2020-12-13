@@ -98,7 +98,7 @@
 html {
     background-color: var(--global-html-backgroundColor);
     color: var(--global-html-color);
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.5;
     font-family: "Inter Web", Helvetica, arial, sans-serif;
     box-sizing: border-box;
@@ -159,7 +159,7 @@ h3 {
 }
 
 h1 {
-    font-size: 36px;
+    font-size: 2.25rem;
     line-height: 48px;
     margin: 0 0 var(--global-whitespace);
 }
@@ -179,7 +179,7 @@ h3 {
 h4,
 h5,
 h6 {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
     line-height: 24px;
     margin-left: var(--global-whitespace-md);
@@ -599,7 +599,7 @@ input::placeholder {
 
 .c-card__title {
     text-align: center;
-    font-size: 32px;
+    font-size: 2rem;
     line-height: var(--global-whitespace);
     font-weight: 600;
     margin-bottom: var(--global-whitespace-sm);
